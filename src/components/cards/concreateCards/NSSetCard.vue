@@ -18,5 +18,5 @@ const fields = computed<LabelValueCardItem[]>(() => {
 </script>
 
 <template>
-  <LabelValueCard :items="fields" title="NSSet" :isLoading="!Boolean(props.nsset)"/>
+  <LabelValueCard :items="fields" title="NSSet" :isLoading="!Boolean(props.nsset)" />
 </template>

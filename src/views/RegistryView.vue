@@ -14,19 +14,20 @@ const data = ref<null | DataType>(null)
 const isVerboseView = ref(false)
 
 onMounted(async () => {
-    try {
-        const response = await axios.get('/data/domain-detail.json')
-        data.value = response.data
-    } catch (error) {
-        console.error('Chyba při načítání JSON:', error)
-    }
-  
+  try {
+    const response = await axios.get('/data/domain-detail.json')
+    data.value = response.data
+  } catch (error) {
+    console.error('Chyba při načítání JSON:', error)
+  }
 })
 </script>
 
 <template>
   <div class="">
-    <h1 class="text-h6 mb-2" :class="{'w-60 h-10 bg-gray-100': !Boolean(data)}">{{ data?.fqdn || "" }}</h1>
+    <h1 class="text-h6 mb-2" :class="{ 'w-60 h-10 bg-gray-100': !Boolean(data) }">
+      {{ data?.fqdn || '' }}
+    </h1>
 
     <v-switch v-model="isVerboseView" label="Verbose view" color="primary" />
 
@@ -45,8 +46,9 @@ onMounted(async () => {
         />
         <div v-else>
           <ContactCard
-            v-for="contact in data?.administrative_contacts"
+            v-for="(contact, index) in data?.administrative_contacts"
             :contact="contact"
+            :key="index"
             title="Administrative contact"
           />
         </div>

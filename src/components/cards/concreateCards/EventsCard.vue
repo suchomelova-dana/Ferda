@@ -36,7 +36,7 @@ const fields = computed<EventCardItem[]>(() => {
 
 <template>
   <InfoCard title="Events" :isLoading="!Boolean(props.events)">
-    <v-row dense v-for="item in fields">
+    <v-row dense v-for="(item, index) in fields" :key="index">
       <v-col cols="2" class="font-weight-bold text-black"> {{ item.label }}: </v-col>
       <v-col cols="4" class="font-weight-medium text-gray-500">
         {{ item.value }}

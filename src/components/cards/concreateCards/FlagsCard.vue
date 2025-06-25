@@ -6,8 +6,8 @@ import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 const props = defineProps<{
-  isVerboseView: boolean,
-flags?: DataType['state_flags']
+  isVerboseView: boolean
+  flags?: DataType['state_flags']
 }>()
 
 const flagsToShow = computed(() => {

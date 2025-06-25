@@ -9,16 +9,20 @@ const props = defineProps<{
 }>()
 
 const fields = computed<LabelValueCardItem[]>(() => {
-    if (!props.contacts) {
-        return [];
-    }
+  if (!props.contacts) {
+    return []
+  }
 
-    return props.contacts.map((contact) => {
-        return { label: contact.name, value: contact.handle, shouldColor: true }
-    })
+  return props.contacts.map((contact) => {
+    return { label: contact.name, value: contact.handle, shouldColor: true }
+  })
 })
 </script>
 
 <template>
-  <LabelValueCard :items="fields" title="Administrative contacts" :isLoading="!Boolean(props.contacts)"/>
+  <LabelValueCard
+    :items="fields"
+    title="Administrative contacts"
+    :isLoading="!Boolean(props.contacts)"
+  />
 </template>

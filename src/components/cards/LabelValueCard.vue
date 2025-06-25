@@ -8,14 +8,14 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 const props = defineProps<{
   title: string
   items: PublishedCardItem[]
-  withIcons?: boolean,
-  isLoading?: boolean,
+  withIcons?: boolean
+  isLoading?: boolean
 }>()
 </script>
 
 <template>
   <InfoCard :title="props.title" :isLoading="isLoading">
-    <v-row dense v-for="item in props.items">
+    <v-row v-for="(item, index) in props.items" :key="index" dense>
       <v-col v-if="props.withIcons" cols="1">
         <FontAwesomeIcon v-if="item.isPublished" :icon="faEye" class="text-green-400" />
         <FontAwesomeIcon
@@ -25,14 +25,14 @@ const props = defineProps<{
         />
       </v-col>
       <v-col cols="3" class="font-weight-bold text-black"> {{ item.label }}: </v-col>
-      <v-col cols="auto" v-if="Array.isArray(item.value)" class="font-weight-medium text-gray-500">
-        <v-col v-for="arrayItem in item.value" class="pa-0">
+      <v-col v-if="Array.isArray(item.value)" cols="auto" class="font-weight-medium text-gray-500">
+        <v-col v-for="(arrayItem, arrayIndex) in item.value" :key="arrayIndex" class="pa-0">
           {{ arrayItem }}
         </v-col>
       </v-col>
       <v-col
-        cols="auto"
         v-else
+        cols="auto"
         class="font-weight-medium"
         :class="item.shouldColor ? 'text-blue-400' : 'text-gray-500'"
       >

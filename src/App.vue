@@ -2,7 +2,7 @@
 import { RouterView } from 'vue-router'
 import HeaderMenu from './components/layout/HeaderMenu.vue'
 import { ref } from 'vue'
-import Sidebar from './components/layout/Sidebar.vue'
+import Sidebar from './components/layout/SidebarDrawer.vue'
 
 const isDrawerOpen = ref(true)
 </script>

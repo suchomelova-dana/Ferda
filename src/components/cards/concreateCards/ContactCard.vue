@@ -5,8 +5,8 @@ import LabelValueCard from './../LabelValueCard.vue'
 import type { LabelValueCardItem } from '@/types/cardTypes'
 
 const props = defineProps<{
-  title: string,
-  contact?: Contact,
+  title: string
+  contact?: Contact
 }>()
 
 const fields = computed<LabelValueCardItem[]>(() => {
@@ -23,5 +23,10 @@ const fields = computed<LabelValueCardItem[]>(() => {
 </script>
 
 <template>
-  <LabelValueCard with-icons :items="fields" :title="props.title" :isLoading="!Boolean(props.contact)"/>
+  <LabelValueCard
+    with-icons
+    :items="fields"
+    :title="props.title"
+    :isLoading="!Boolean(props.contact)"
+  />
 </template>

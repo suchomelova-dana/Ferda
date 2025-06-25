@@ -26,12 +26,12 @@ const onShowBtnClick = () => {
   remainingSeconds.value = PASSWORD_TIMEOUT / 1000
 
   interval = setInterval(() => {
-      remainingSeconds.value--
-      if (remainingSeconds.value <= 0) {
-        clearInterval(interval!)
-        interval = null
-      }
-    }, 1000)
+    remainingSeconds.value--
+    if (remainingSeconds.value <= 0) {
+      clearInterval(interval!)
+      interval = null
+    }
+  }, 1000)
 
   timeout = setTimeout(() => {
     isPasswordVisible.value = false
@@ -45,7 +45,7 @@ onUnmounted(() => {
     timeout = null
   }
 
-  if(interval) {
+  if (interval) {
     clearInterval(interval)
     interval = null
   }
@@ -58,10 +58,10 @@ onUnmounted(() => {
       <v-col class="font-weight-bold text-black"> AuthInfo: </v-col>
       <v-col class="font-weight-medium text-gray-500">
         <v-col class="pa-0">
-            <span v-if="isPasswordVisible">
-                {{ SECRET_PASSWORD }}
-                <span class="pl-5 ">{{ remainingSeconds }}</span>
-            </span>
+          <span v-if="isPasswordVisible">
+            {{ SECRET_PASSWORD }}
+            <span class="pl-5">{{ remainingSeconds }}</span>
+          </span>
           <v-btn v-else color="primary" @click="onShowBtnClick"> SHOW </v-btn>
         </v-col>
       </v-col>
