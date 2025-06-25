@@ -14,45 +14,45 @@ const data = ref<null | DataType>(null)
 const isVerboseView = ref(false)
 
 onMounted(async () => {
-  try {
-    const response = await axios.get('/data/domain-detail.json')
-    data.value = response.data
-  } catch (error) {
-    console.error('Chyba při načítání JSON:', error)
-  }
+    try {
+        const response = await axios.get('/data/domain-detail.json')
+        data.value = response.data
+    } catch (error) {
+        console.error('Chyba při načítání JSON:', error)
+    }
+  
 })
 </script>
 
 <template>
   <div class="">
-    <h1 class="text-h6 mb-2">{{ data?.fqdn }}</h1>
+    <h1 class="text-h6 mb-2" :class="{'w-60 h-10 bg-gray-100': !Boolean(data)}">{{ data?.fqdn || "" }}</h1>
 
     <v-switch v-model="isVerboseView" label="Verbose view" color="primary" />
 
-    <v-row v-if="data" class="w-full pa-0 ma-0">
+    <v-row class="w-full pa-0 ma-0">
       <v-col cols="12" lg="7">
-        <AuthCard :expires-at="data.expires_at" />
-        <EventsCard :events="data.events" />
+        <AuthCard :expires-at="data?.expires_at" />
+        <EventsCard :events="data?.events" />
         <FlagsCard :flags="data?.state_flags" :is-verbose-view="isVerboseView" />
       </v-col>
 
       <v-col cols="12" lg="5">
-        <ContactCard :contact="data.owner" title="Owner" />
+        <ContactCard :contact="data?.owner" title="Owner" />
         <AdministrativeContactsCard
           v-if="!isVerboseView"
-          :contacts="data.administrative_contacts"
+          :contacts="data?.administrative_contacts"
         />
         <div v-else>
           <ContactCard
-            v-for="contact in data.administrative_contacts"
+            v-for="contact in data?.administrative_contacts"
             :contact="contact"
             title="Administrative contact"
           />
         </div>
-        <NSSetCard :nsset="data.nsset" />
-        <KeySet :key-set="data.keyset" />
+        <NSSetCard :nsset="data?.nsset" />
+        <KeySet :key-set="data?.keyset" />
       </v-col>
     </v-row>
-    <!-- loader -->
   </div>
 </template>

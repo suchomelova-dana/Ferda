@@ -5,37 +5,37 @@ import type { EventCardItem } from '@/types/cardTypes'
 import { computed } from 'vue'
 
 const props = defineProps<{
-  events: DataType['events']
+  events?: DataType['events']
 }>()
 
 const fields = computed<EventCardItem[]>(() => {
   return [
     {
       label: 'Create date',
-      value: props.events.registered?.timestamp,
-      registrar: props.events.registered?.registrar_handle,
+      value: props.events?.registered?.timestamp,
+      registrar: props.events?.registered?.registrar_handle,
     },
     {
       label: 'Update date',
-      value: props.events.updated?.timestamp,
-      registrar: props.events.updated?.registrar_handle,
+      value: props.events?.updated?.timestamp,
+      registrar: props.events?.updated?.registrar_handle,
     },
     {
       label: 'Transfer date',
-      value: props.events.transferred?.timestamp,
-      registrar: props.events.transferred?.registrar_handle,
+      value: props.events?.transferred?.timestamp,
+      registrar: props.events?.transferred?.registrar_handle,
     },
     {
       label: 'Delete date',
-      value: props.events.unregistered?.timestamp,
-      registrar: props.events.unregistered?.registrar_handle,
+      value: props.events?.unregistered?.timestamp,
+      registrar: props.events?.unregistered?.registrar_handle,
     },
   ]
 })
 </script>
 
 <template>
-  <InfoCard title="Events">
+  <InfoCard title="Events" :isLoading="!Boolean(props.events)">
     <v-row dense v-for="item in fields">
       <v-col cols="2" class="font-weight-bold text-black"> {{ item.label }}: </v-col>
       <v-col cols="4" class="font-weight-medium text-gray-500">

@@ -8,12 +8,13 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 const props = defineProps<{
   title: string
   items: PublishedCardItem[]
-  withIcons?: boolean
+  withIcons?: boolean,
+  isLoading?: boolean,
 }>()
 </script>
 
 <template>
-  <InfoCard :title="props.title">
+  <InfoCard :title="props.title" :isLoading="isLoading">
     <v-row dense v-for="item in props.items">
       <v-col v-if="props.withIcons" cols="1">
         <FontAwesomeIcon v-if="item.isPublished" :icon="faEye" class="text-green-400" />

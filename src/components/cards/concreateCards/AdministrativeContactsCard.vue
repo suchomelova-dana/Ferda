@@ -5,16 +5,20 @@ import type { DataType } from '@/types/dataTypes'
 import type { LabelValueCardItem } from '@/types/cardTypes'
 
 const props = defineProps<{
-  contacts: DataType['administrative_contacts']
+  contacts?: DataType['administrative_contacts']
 }>()
 
 const fields = computed<LabelValueCardItem[]>(() => {
-  return props.contacts.map((contact) => {
-    return { label: contact.name, value: contact.handle, shouldColor: true }
-  })
+    if (!props.contacts) {
+        return [];
+    }
+
+    return props.contacts.map((contact) => {
+        return { label: contact.name, value: contact.handle, shouldColor: true }
+    })
 })
 </script>
 
 <template>
-  <LabelValueCard :items="fields" title="Administrative contacts" />
+  <LabelValueCard :items="fields" title="Administrative contacts" :isLoading="!Boolean(props.contacts)"/>
 </template>
