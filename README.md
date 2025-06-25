@@ -1,18 +1,17 @@
 # Ferda
 
-This template should help get you started developing with Vue 3 in Vite.
+A simple project for displaying domain data. The data is fetched from a JSON file using Axios, and the information is displayed in individual cards. The app has 2 modes: brief and detailed. 
 
-## Recommended IDE Setup
+## Technologies
+- Vue 3 (Composition API, script setup)
+- Typescript
+- Router
+- Vuetify 
+- FontAwesome icons
+- Tailwind
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+![image](./src/assets/Ferda_screenshot.png)
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
 
 ## Project Setup
 
